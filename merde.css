@@ -1,0 +1,38 @@
+#accueil{position: relative;
+    left: 1650px;
+    top: -50px;
+    background-color: white;}
+    #contact{position: relative;
+    left: 1350px;
+    top: -90px;
+    background-color: white;}
+    #produit{position: relative;
+    left: 1100px;
+    top: -130px;
+    background-color: white;}
+    #setion1{background-color: whitesmoke;
+    height: 60px;
+    
+    position: absolute;
+    
+    border-radius: 20px;
+    }
+    body{background-color: gainsboro;}
+    #section2{background-color: whitesmoke;
+    position: relative;
+    top: 100px;
+    
+    border-radius: 20px;}
+    .image-row {
+        display: flex;
+        justify-content: center;
+        gap: 20px; /* Espace entre les images */
+      }
+      .image-row img {
+        width: 400px;
+      }
+      #avis{
+        background-color: whitesmoke;
+        position: relative;
+        top: 70px;
+      }

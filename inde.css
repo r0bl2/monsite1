@@ -1,0 +1,156 @@
+#labe{
+    position: relative;
+    top: -170px;
+    left: 400px;
+}
+#title{
+    position: relative;
+    left: 0px;
+    top: 120px;
+    background-color: black;
+    width: 1000px;
+    height: 160px;
+    border-radius: 20px;
+
+}
+#corps{
+    position: relative;
+    left: 95px;
+    top: 120px;
+    background-color: black;
+    width: 1000px;
+    height: 160px;
+    border-radius: 20px;}
+#un
+{
+    position: relative;
+    top: 20px;
+    background-color: chocolate;
+    height: 70px;
+    width: 300px;
+    border-radius: 10px;
+
+}
+#ti{
+    color: darkgoldenrod;
+}
+
+#deux
+{
+    background-color: chocolate;
+    position: relative;
+    top: 60px;
+    height: 70px;
+    width: 300px;
+    border-radius: 10px;
+}
+#trois{
+    background-color: chocolate;
+    position: relative;
+    top: 100px;
+    height: 70px;
+    width: 300px;
+    border-radius: 10px;
+}
+#quatre{
+    background-color: chocolate;
+    position: relative;
+    left: 650px;
+    top: -50px;
+    height: 70px;
+    width: 230px;
+    border-radius: 10px;
+}
+#six{
+    background-color: chocolate;
+    position: relative;
+    left: 650px;
+    top: -390px;
+    height: 70px;
+    width: 230px;
+    border-radius: 10px;
+}
+#cinq{
+
+    background-color: chocolate;
+    position: relative;
+    left: 650px;
+    top: -410px;
+    height: 70px;
+    width: 230px;
+    border-radius: 10px;
+   
+}
+#project{
+    background-image: url(./);
+    height: 200px;
+}
+    
+body{ 
+    background-image: url(./melo.png);
+    
+  }
+  img{
+    position: relative;
+    left: 800px;
+    top: 200px;
+  }
+  #e{
+    position: relative;
+    top: 170px;
+  }
+  #a{position: relative;
+    top: 100px;}
+    #part{background-image: url(./WhatsApp\ Image\ 2025-04-26\ à\ 17.38.50_7164935d.jpg);
+      
+        font-style: italic;
+        font-weight: 400;
+        font-size: larger;
+color: black ;
+border-radius: 20px;
+       
+    }
+    #reo{background-color: orangered;
+    height: 200px;
+    width: 150PX;
+border-radius: 50%;
+position: relative;
+left: 700PX;}
+    h1{
+        color: aliceblue;
+    }
+    h2{
+        color: aliceblue;
+    }
+    h3{color: aliceblue;}
+    #re{border-radius: 20px;
+        background-color: khaki;
+        height: 400px;
+        font-style: italic;
+        font-weight: 300;
+        font-size: larger;
+        background-image: url(./WhatsApp\ Image\ 2025-04-26\ à\ 17.38.50_7164935d.jpg);
+    }
+
+    
+      #ME {position: relative;
+        left: 100px;
+        border-radius: 20px;
+    } 
+    #CODE{
+        position: relative;
+        left: 350px;
+        max-width: 1200px;
+        margin: 20px;
+        color: black;
+    }
+    #JE{
+        border-radius: 20px;
+        background-color: khaki;
+        height: 300px;
+        font-style: italic;
+        font-weight: 400;
+        font-size: larger;
+        background-image: url(./WhatsApp\ Image\ 2025-04-26\ à\ 17.38.50_7164935d.jpg);
+    }
+    
