@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Plateforme Soutien - Prototype UI</title>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root{
+      --primary:#6C63FF; --accent:#FF6584; --muted:#6b7280; --bg:#f6f8fb;
+      --card:#ffffff; --radius:12px;
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,var(--bg),#fff);color:#111}
+    header{background:var(--primary);color:#fff;padding:18px 24px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:48px;height:48px;border-radius:10px;background:#fff;color:var(--primary);display:grid;place-items:center;font-weight:700}
+    nav a{color:rgba(255,255,255,0.95);text-decoration:none;margin-left:14px;font-weight:600}
+    .container{max-width:1100px;margin:22px auto;padding:0 16px}
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:20px}
+    .card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:0 6px 18px rgba(16,24,40,0.06)}
+    h2{margin:0 0 12px 0}
+
+    /* Forms */
+    label{display:block;font-size:0.9rem;color:var(--muted);margin-bottom:6px}
+    input[type=text],input[type=email],textarea,select{width:100%;padding:10px 12px;border-radius:8px;border:1px solid #e6e9ee;font-size:0.95rem}
+    textarea{min-height:120px;resize:vertical}
+    .row{display:flex;gap:12px}
+    .btn{background:var(--primary);color:#fff;padding:10px 14px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
+    .btn.secondary{background:#fff;color:var(--primary);border:1px solid rgba(108,99,255,0.12)}
+    .muted{color:var(--muted);font-size:0.9rem}
+
+    /* testimonial list */
+    .testi{display:flex;gap:12px;padding:12px;border-radius:10px;border:1px dashed #eef2ff;margin-bottom:12px}
+    .avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;display:grid;place-items:center;font-weight:700}
+
+    /* NGO list */
+    .ngo{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:8px;border:1px solid #f1f5f9;margin-bottom:10px}
+
+    /* responsive */
+    @media (max-width:900px){.grid{grid-template-columns:1fr}.container{padding:0 12px}}
+
+    /* small helpers */
+    .flex{display:flex;align-items:center;gap:8px}
+    .small{font-size:0.85rem}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">S</div>
+      <div>
+        <div style="font-weight:800;font-size:1.05rem">SoutienFem</div>
+        <div style="font-size:0.85rem;opacity:0.9">Soutien & ressources pour femmes et jeunes</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#home">Accueil</a>
+      <a href="#temoignages">Témoignages</a>
+      <a href="#ong">ONG</a>
+      <a href="#outils">Outils</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="grid">
+      <div>
+        <!-- Hero / Actions -->
+        <section class="card" id="home">
+          <h2>Bienvenue — Trouve soutien & ressources</h2>
+          <p class="muted">Un espace sûr pour publier des témoignages anonymes, contacter des ONG et trouver des ressources pratiques.</p>
+          <div style="margin-top:12px" class="row">
+            <button class="btn" onclick="document.getElementById('form-temoignage').scrollIntoView({behavior:'smooth'})"><i class="fa-solid fa-pen"></i> Publier un témoignage</button>
+            <button class="btn secondary" onclick="document.getElementById('ong-list').scrollIntoView({behavior:'smooth'})"><i class="fa-solid fa-hands-helping"></i> Trouver une ONG</button>
+          </div>
+        </section>
+
+        <!-- Témoignages + form -->
+        <section class="card" id="temoignages" style="margin-top:18px">
+          <h2>Témoignages</h2>
+          <p class="muted">Lire et partager des expériences en toute sécurité.</p>
+
+          <div id="testimonialsContainer" style="margin-top:12px">
+            <!-- testimonials injected by JS -->
+          </div>
+
+          <hr style="margin:14px 0;border:none;border-top:1px dashed #eef2ff" />
+
+          <form id="form-temoignage">
+            <h3>Publier un témoignage</h3>
+            <label for="name">Nom (facultatif)</label>
+            <input id="name" type="text" placeholder="Ex: Amélie" />
+            <div style="margin:8px 0" class="flex">
+              <input id="anon" type="checkbox"/> <label for="anon" class="small">Publier anonymement</label>
+            </div>
+            <label for="content">Votre témoignage</label>
+            <textarea id="content" placeholder="Racontez votre expérience, vos besoins, conseils..." required></textarea>
+            <div style="display:flex;gap:8px;margin-top:10px">
+              <button type="button" class="btn" onclick="submitTestimonial()">Publier</button>
+              <button type="button" class="btn secondary" onclick="saveDraft()">Enregistrer brouillon</button>
+            </div>
+            <p id="form-msg" class="muted small" style="margin-top:8px"></p>
+          </form>
+        </section>
+
+        <!-- Outils -->
+        <section class="card" id="outils" style="margin-top:18px">
+          <h2>Outils pratiques</h2>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="card" style="padding:12px">
+              <h4><i class="fa-solid fa-calendar-day"></i> Calculer période</h4>
+              <label for="last-period">Date des règles (dernier 1er jour)</label>
+              <input type="date" id="last-period" />
+              <label for="cycle-length">Durée cycle (jours)</label>
+              <input type="number" id="cycle-length" value="28" min="21" max="40" />
+              <div style="margin-top:8px"><button class="btn" onclick="calcPeriod()">Calculer</button></div>
+              <p id="period-result" class="muted small" style="margin-top:8px"></p>
+            </div>
+
+            <div class="card" style="padding:12px">
+              <h4><i class="fa-solid fa-shopping-basket"></i> Boutique (démo)</h4>
+              <p class="muted small">Articles utiles pour maman & bébé. (Paiement non intégré dans ce prototype)</p>
+              <select id="product">
+                <option value="couverture">Couverture bébé - 12€</option>
+                <option value="kit-hygiene">Kit hygiène - 8€</option>
+                <option value="biberon">Biberon - 6€</option>
+              </select>
+              <div style="margin-top:10px"><button class="btn" onclick="addToCart()">Ajouter au panier</button></div>
+              <p id="cart-msg" class="muted small" style="margin-top:8px"></p>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Right column -->
+      <aside>
+        <div class="card">
+          <h3>ONG partenaires</h3>
+          <div id="ong-list">
+            <!-- NGOs injected by JS -->
+          </div>
+          <div style="margin-top:10px;text-align:center">
+            <button class="btn secondary" onclick="contactNGO()">Demander aide</button>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <h3>Connexion / Compte</h3>
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="ex: moi@mail.com" />
+          <label for="password">Mot de passe</label>
+          <input id="password" type="text" placeholder="mot de passe" />
+          <div style="margin-top:10px;display:flex;gap:8px">
+            <button class="btn" onclick="login()">Se connecter</button>
+            <button class="btn secondary" onclick="register()">S'inscrire</button>
+          </div>
+          <p class="muted small">Connexion simple pour démo — implémenter sécurité côté serveur pour production.</p>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <h3>Ressources rapides</h3>
+          <ul style="padding-left:18px;margin:0">
+            <li class="small">Lignes d'écoute locales</li>
+            <li class="small">FAQ: droits & options</li>
+            <li class="small">Guide: préparer une consultation</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <section class="card" id="contact" style="margin-top:18px">
+      <h2>Contact & signalement</h2>
+      <label for="contact-name">Nom</label>
+      <input id="contact-name" type="text" />
+      <label for="contact-msg">Message</label>
+      <textarea id="contact-msg"></textarea>
+      <div style="margin-top:8px"><button class="btn" onclick="sendContact()">Envoyer</button></div>
+      <p id="contact-result" class="muted small" style="margin-top:8px"></p>
+    </section>
+
+    <footer style="text-align:center;margin:22px 0;color:var(--muted);font-size:0.9rem">Prototype UI — Réalisé pour plan de projet. Données locales uniquement.</footer>
+  </main>
+
+  <script>
+    // Mock data
+    const ngos = [
+      {id:1,name:'Espoir & Aide',phone:'+228 90 00 00 01',region:'Lomé'},
+      {id:2,name:'Main Solidaire',phone:'+228 90 00 00 02',region:'Sokodé'},
+      {id:3,name:'Centre Maman',phone:'+228 90 00 00 03',region:'Kara'}
+    ];
+
+    const testimonials = [
+      {name:'A.', anon:true, text:'J'ai trouvé du réconfort ici. Merci.'},
+      {name:'Léa', anon:false, text:'Les ressources m'ont été utiles pendant ma grossesse.'}
+    ];
+
+    // Render NGOs
+    function renderNGOs(){
+      const el = document.getElementById('ong-list'); el.innerHTML='';
+      ngos.forEach(n=>{
+        const div = document.createElement('div'); div.className='ngo';
+        div.innerHTML = `<div><strong>${n.name}</strong><div class="muted small">${n.region}</div></div><div class="small">${n.phone}</div>`;
+        el.appendChild(div);
+      })
+    }
+
+    // Render testimonials
+    function renderTestimonials(){
+      const el = document.getElementById('testimonialsContainer'); el.innerHTML='';
+      testimonials.slice().reverse().forEach(t=>{
+        const d = document.createElement('div'); d.className='testi';
+        d.innerHTML = `<div class="avatar">${t.anon? 'A' : (t.name? t.name[0].toUpperCase() : 'U')}</div>
+                       <div><strong>${t.anon? 'Anonyme' : escapeHtml(t.name || 'Utilisateur')}</strong>
+                       <p class="muted small">${escapeHtml(t.text)}</p></div>`;
+        el.appendChild(d);
+      })
+    }
+
+    function escapeHtml(s){ if(!s) return ''; return s.replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]); }
+
+    // Submit testimonial
+    function submitTestimonial(){
+      const name = document.getElementById('name').value.trim();
+      const anon = document.getElementById('anon').checked;
+      const content = document.getElementById('content').value.trim();
+      const msg = document.getElementById('form-msg');
+      if(!content){ msg.textContent='Veuillez écrire un témoignage.'; return; }
+      testimonials.push({name: name, anon: anon, text: content});
+      renderTestimonials();
+      msg.textContent='Témoignage publié.';
+      document.getElementById('content').value=''; document.getElementById('name').value=''; document.getElementById('anon').checked=false;
+    }
+
+    function saveDraft(){
+      const content = document.getElementById('content').value;
+      localStorage.setItem('draftTemoignage', content);
+      document.getElementById('form-msg').textContent='Brouillon enregistré localement.';
+    }
+
+    // Simple menstrual period calculator
+    function calcPeriod(){
+      const d = document.getElementById('last-period').value;
+      const cycle = parseInt(document.getElementById('cycle-length').value)||28;
+      const out = document.getElementById('period-result');
+      if(!d){ out.textContent='Sélectionnez la date des dernières règles.'; return; }
+      const start = new Date(d);
+      const next = new Date(start.getTime() + cycle*24*3600*1000);
+      const fertileStart = new Date(next.getTime() - 14*24*3600*1000 - 5*24*3600*1000);
+      const fertileEnd = new Date(next.getTime() - 14*24*3600*1000 + 5*24*3600*1000);
+      out.textContent = `Prochaine période approximative: ${next.toLocaleDateString()} — Fenêtre fertile approximative: ${fertileStart.toLocaleDateString()} à ${fertileEnd.toLocaleDateString()}.`;
+    }
+
+    // Cart simulation
+    function addToCart(){
+      const p = document.getElementById('product').value;
+      localStorage.setItem('cart', p);
+      document.getElementById('cart-msg').textContent = 'Article ajouté au panier (prototype).';
+    }
+
+    // Contact
+    function sendContact(){
+      const name = document.getElementById('contact-name').value.trim();
+      const msg = document.getElementById('contact-msg').value.trim();
+      const out = document.getElementById('contact-result');
+      if(!msg){ out.textContent='Veuillez entrer un message.'; return; }
+      out.textContent = 'Merci — votre message a été enregistré (prototype).';
+      document.getElementById('contact-name').value=''; document.getElementById('contact-msg').value='';
+    }
+
+    function contactNGO(){ alert('Simuler demande d\'aide — intégrer formulaire détaillé & backend pour production.'); }
+
+    // Auth (demo)
+    function login(){ alert('Connexion simulée — implémenter backend sécurisé.'); }
+    function register(){ alert('Inscription simulée — implémenter backend sécurisé.'); }
+
+    // On load
+    document.addEventListener('DOMContentLoaded', ()=>{
+      renderNGOs(); renderTestimonials();
+      // restore draft
+      const draft = localStorage.getItem('draftTemoignage'); if(draft){ document.getElementById('content').value = draft; document.getElementById('form-msg').textContent='Brouillon restauré.' }
+    });
+  </script>
+</body>
+</html>
